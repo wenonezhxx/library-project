@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 45);
+            $table->integer('museum_id')->unsigned();
+            $table->foreign('museum_id')->references('id')->on('museums');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('exhibitions');
     }
 };
