@@ -1,5 +1,8 @@
 <?php
-
+use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ArtworkController;
+use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\MuseumController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -125,3 +128,11 @@ Route::get('/table/{table}', function ($table) use ($tables) {
 
     return view('table', compact('title', 'records', 'table', 'columnNames'));
 });
+Route::get('/artists', [ArtistController::class, 'index']);
+Route::get('/artists/{id}', [ArtistController::class, 'show']);
+Route::get('/artworks', [ArtworkController::class, 'index']);
+Route::get('/artworks/{id}', [ArtworkController::class, 'show']);
+Route::get('/museums', [MuseumController::class, 'index']);
+Route::get('/museums/{id}', [MuseumController::class, 'show']);
+Route::get('/exhibitions', [ExhibitionController::class, 'index']);
+Route::get('/exhibitions/{id}', [ExhibitionController::class, 'show']);
