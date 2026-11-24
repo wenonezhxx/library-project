@@ -15,7 +15,12 @@ class ArtworkController extends Controller
 
     public function show($id)
     {
-        $artwork = Artwork::findOrFail($id);
+        $artwork = Artwork::with([
+    'artist',
+    'genre',
+    'material',
+    'exhibitions'
+])->findOrFail($id);
 
         return view('artworks.show', compact('artwork'));
 }

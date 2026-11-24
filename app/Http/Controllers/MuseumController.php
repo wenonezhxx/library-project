@@ -15,7 +15,10 @@ class MuseumController extends Controller
 
     public function show($id)
     {
-        $museum = Museum::findOrFail($id);
+        $museum = Museum::with([
+        'country',
+        'exhibitions'
+    ])->findOrFail($id);
 
         return view('museums.show', compact('museum'));
     }

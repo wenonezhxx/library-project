@@ -14,7 +14,10 @@ class ExhibitionController extends Controller
 
     public function show($id)
     {
-        $exhibition = Exhibition::findOrFail($id);
+        $exhibition = Exhibition::with([
+    'museum',
+    'artworks'
+])->findOrFail($id);
 
         return view('exhibitions.show', compact('exhibition'));
     }

@@ -14,7 +14,12 @@ class ArtistController extends Controller
 
     public function show($id)
     {
-        $artist = Artist::findOrFail($id);
+        $artist = Artist::with([
+            'country',
+            'style',
+            'artworks',
+            'techniques'
+        ])->findOrFail($id);
 
         return view('artists.show', compact('artist'));
     }
